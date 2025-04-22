@@ -23,6 +23,19 @@ A MERN stack-based healthcare application that allows users to book appointments
 - **Error Tracking**: Sentry for application monitoring
 - **Environment Management**: dotenv for managing environment variables
 
+## ScreenShots
+
+![image](https://github.com/user-attachments/assets/40af5b4a-1265-45a3-8012-a7cebe318d9a)
+
+![image](https://github.com/user-attachments/assets/76dcd31a-6e29-4277-b42a-6fde759f1a38)
+
+![image](https://github.com/user-attachments/assets/381a2eee-ed33-4173-8c31-d2447de3eb01)
+
+![image](https://github.com/user-attachments/assets/26701a61-fbbe-44dc-9e3e-53cfb62268dd)
+
+![image](https://github.com/user-attachments/assets/c92fc04d-9c59-48d8-b676-0d7410219e9a)
+
+
 ## Setup
 
 ### Prerequisites
@@ -67,7 +80,7 @@ TWILIO_PHONE_NUMBER=your-twilio-phone-number
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/healthcare-application.git
+   git clone https://github.com/NikhilMali77/CarePulse---healthcare-App.git
    cd healthcare-application
    ```
 
@@ -159,6 +172,3 @@ We welcome contributions to improve the healthcare application! If you find any 
 4. Push to the branch (`git push origin feature-branch`).
 5. Create a new pull request.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
