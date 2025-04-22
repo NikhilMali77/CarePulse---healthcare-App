@@ -41,8 +41,8 @@ Ensure you have the following installed:
 Create a `.env` file at the root of your project and add the following variables:
 
 ```bash
-STRIPE_SECRET_KEY=sk_test_51R7r1oKPsi69BnCcRWdYuKtXWm4BCwQNvM7GwAaIZaaddbZxf3QmK995702CY8f38vgCx6r1QhUR2Io53zmx7dy300SzsiThsV
-STRIPE_WEBHOOK_SECRET=whsec_fdf95c471206c39ea27fb5e4c758dc03139644ed3c01b62ed528ac00db2b4a95
+STRIPE_SECRET_KEY=your-secret-key
+STRIPE_WEBHOOK_SECRET=your-webhook-secret
 EMAIL_USER=your_email@gmail.com
 EMAIL_PASS=your_email_password
 GOOGLE_ROLE=admin
