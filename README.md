@@ -1,7 +1,3 @@
-Here's a comprehensive `README.md` file for your GitHub repository, based on the details we've discussed about your healthcare application:
-
----
-
 # Healthcare Application
 
 A MERN stack-based healthcare application that allows users to book appointments, manage profiles, and interact with doctors. It includes Google OAuth for authentication and role-based access control for users and admins. Additionally, it provides features for doctor profile management and admin dashboard for managing appointments.
