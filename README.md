@@ -41,39 +41,25 @@ Ensure you have the following installed:
 Create a `.env` file at the root of your project and add the following variables:
 
 ```bash
-# Google OAuth credentials
+STRIPE_SECRET_KEY=sk_test_51R7r1oKPsi69BnCcRWdYuKtXWm4BCwQNvM7GwAaIZaaddbZxf3QmK995702CY8f38vgCx6r1QhUR2Io53zmx7dy300SzsiThsV
+STRIPE_WEBHOOK_SECRET=whsec_fdf95c471206c39ea27fb5e4c758dc03139644ed3c01b62ed528ac00db2b4a95
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_email_password
+GOOGLE_ROLE=admin
 GOOGLE_CLIENT_ID=your-client-id
 GOOGLE_CLIENT_SECRET=your-client-secret
 GOOGLE_CALLBACK_URL=http://localhost:5000/auth/google/callback
-
-# Server port
 PORT=5000
-
-# MongoDB URI
-MONGODB_URI=mongodb://localhost:27017/your-database
-
-# JWT secret
+MONGO_URI=mongodb://localhost:27017/your-database
 JWT_SECRET=your-jwt-secret
-
-# Session settings
 SESSION_SECRET=your-session-secret
 SESSION_KEY=connect.sid
-
-# Cloudinary credentials
-CLOUDINARY_CLOUD_NAME=your-cloud-name
-CLOUDINARY_API_KEY=your-cloudinary-api-key
-CLOUDINARY_API_SECRET=your-cloudinary-api-secret
-
-# Twilio credentials (optional)
+EMAIL_SERVICE=your-email-service
+EMAIL_USER=your-email-username
+EMAIL_PASS=your-email-password
 TWILIO_ACCOUNT_SID=your-twilio-account-sid
 TWILIO_AUTH_TOKEN=your-twilio-auth-token
 TWILIO_PHONE_NUMBER=your-twilio-phone-number
-
-# Sentry DSN (optional)
-SENTRY_DSN=your-sentry-dsn
-
-# Google OAuth Role (optional)
-GOOGLE_ROLE=admin
 ```
 
 ### Install Dependencies
