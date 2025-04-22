@@ -1,0 +1,54 @@
+.modal {
+  background: #2d3748;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  position: relative;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 94%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btnClass {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modBtn {
+  padding: 10px 15px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modBtn:hover {
+  background: #0056b3;
+}

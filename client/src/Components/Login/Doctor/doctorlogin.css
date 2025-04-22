@@ -1,0 +1,57 @@
+/* Doctor Login Modal */
+.doctor-modal {
+  background: #2d3748;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  position: relative;
+}
+
+.doctor-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.doctor-form-group {
+  margin-bottom: 15px;
+}
+
+.doctor-form-group label {
+  display: block;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.doctor-input{
+  width: 94%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #1a202c; /* Background for input fields */
+  color: white; /* White input text */
+}
+
+.doctor-btnClass {
+  display: flex;
+  justify-content: space-between;
+}
+
+.doctor-modBtn {
+  padding: 10px 15px;
+  border: none;
+  background: #38a169; /* A green color for doctor login button */
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.doctor-modBtn:hover {
+  background: #2f855a; /* Darker green on hover */
+}

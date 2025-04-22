@@ -1,0 +1,114 @@
+/* Full page layout adjustments */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  background-color: #111111;
+  font-family: 'Arial', sans-serif;
+  color: white;
+}
+
+/* Centered container with modern card layout */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #1a1a1a;
+  color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+/* Header styling */
+h2 {
+  color: #4caf50; /* Green theme */
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* Input area */
+textarea {
+  width: 90%;
+  min-height: 120px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #4caf50;
+  background: #2a2a3a;
+  color: #ffffff;
+  resize: none;
+  outline: none;
+}
+
+textarea::placeholder {
+  color: #b0b0b0;
+}
+
+/* Button styling */
+button {
+  margin-top: 15px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+button:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+/* Predictions Section */
+h3 {
+  margin-top: 20px;
+  font-size: 22px;
+  color: #00c8ff; /* Cyan heading */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+li {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: left;
+}
+
+li strong {
+  color: #4caf50;
+}
+
+/* No results message */
+p {
+  font-size: 16px;
+  color: #ffcc00;
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}

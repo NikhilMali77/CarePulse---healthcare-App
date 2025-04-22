@@ -1,0 +1,417 @@
+/* Base Styles */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 40a10 10 0 0 1 10 10 10 10 0 0 1-10 10 10 10 0 0 1-10-10 10 10 0 0 1 10-10zm0-30a10 10 0 0 1 10 10 10 10 0 0 1-10 10 10 10 0 0 1-10-10 10 10 0 0 1 10-10zm0 60a10 10 0 0 1 10 10 10 10 0 0 1-10 10 10 10 0 0 1-10-10 10 10 0 0 1 10-10z" fill="rgba(72, 187, 120, 0.1)" /></svg>');
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative Background Elements */
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  /* background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%); */
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Login Box */
+.login-box {
+  display: flex;
+  flex-direction: row;
+  background: rgba(26, 26, 26, 0.9);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 1000px;
+  min-height: 600px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+/* Form Box */
+.form-box {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(26, 26, 26, 0.95);
+}
+
+/* Form Header */
+.form-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.login-subtitle {
+  font-size: 16px;
+  color: #d0d0d0;
+}
+
+/* Form */
+.log-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input Group */
+.input-group {
+  position: relative;
+}
+
+.input-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #e0e0e0;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.input-fld {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: #2c2c2c;
+  border: 1px solid #444;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.input-fld::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+.input-fld:hover {
+  background: #333;
+}
+
+.input-fld:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+  background: #333;
+}
+
+/* Label Animation on Focus */
+.input-group:focus-within .input-label {
+  color: #4caf50;
+  transform: translateY(-2px);
+}
+
+/* Submit Button */
+.submit-button {
+  background: linear-gradient(45deg, #4caf50, #66bb6a);
+  color: #fff;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.5);
+  background: linear-gradient(45deg, #45a049, #5cb860);
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.submit-button:hover::before {
+  left: 100%;
+}
+
+/* Google Sign-In Button */
+.google-login {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #ffffff;
+  color: #333;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.google-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  background: #f1f1f1;
+}
+
+.google-icon {
+  font-size: 20px;
+  color: #4285f4;
+}
+
+/* Sign-Up Link */
+.signup-link {
+  margin-top: 20px;
+  text-align: center;
+  color: #d0d0d0;
+  font-size: 14px;
+}
+
+.signup-link-text {
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.signup-link-text:hover {
+  color: #66bb6a;
+}
+
+/* Role Login Links */
+.role-login-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.role-login-btn {
+  background: transparent;
+  border: 1px solid #4caf50;
+  color: #4caf50;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.role-login-btn:hover {
+  background: #4caf50;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Error Message */
+.error-message {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(229, 62, 62, 0.2);
+  color: #e53e3e;
+  border: 1px solid #e53e3e;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.error-message::before {
+  content: '✖';
+  font-size: 16px;
+}
+
+/* Image Box */
+.img-box {
+  flex: 1;
+  /* position: relative; */
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* align-items: center; */
+  /* justify-content: flex-end; */
+  background: #2d3748;
+}
+
+.img-box img {
+  width: 100%;
+  height: 100%;
+  /* margin-top: auto;
+  margin-bottom: auto; */
+  object-fit: cover;
+  border: 1px solid black;
+  /* border-radius: 16px; */
+  /* transition: transform 0.3s ease; */
+}
+
+.img-box .img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(76, 175, 80, 0.2), rgba(0, 0, 0, 0.4));
+  border-radius: 0 16px 16px 0;
+}
+
+/* Desk Element */
+.desk {
+  width: 100%;
+  height: 30%;
+  background: #4a90e2;
+  border-radius: 0 0 16px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.desk::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: #5aa0f2;
+}
+
+.desk::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background: #4a90e2;
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-box {
+    flex-direction: column;
+    width: 90%;
+    min-height: auto;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .form-box {
+    padding: 30px;
+    width: 100%;
+  }
+
+  .img-box {
+    height: 200px;
+    background: #1a1a1a;
+  }
+
+  .img-box img {
+    width: 60%;
+    height: 60%;
+  }
+
+  .desk {
+    height: 40px;
+  }
+
+  .desk::before {
+    height: 10px;
+  }
+
+  .desk::after {
+    height: 5px;
+  }
+
+  .log-form {
+    text-align: center;
+  }
+
+  .role-login-links {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .role-login-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-title {
+    font-size: 28px;
+  }
+
+  .login-subtitle {
+    font-size: 14px;
+  }
+
+  .input-fld {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .submit-button,
+  .google-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .role-login-links {
+    flex-direction: column;
+  }
+}

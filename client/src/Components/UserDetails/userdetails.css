@@ -1,0 +1,129 @@
+
+.details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #1a202c;
+}
+
+.user-details-container {
+  width: 70%;
+  height: auto;
+  /* margin-left:  auto;
+  margin-right: auto; */
+  margin-top: 100px;
+  margin-bottom: 100px;
+  background-color: #2d3748;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #4CAF50; /* Accent color (light green) for healthcare apps */
+  margin-bottom:40px;
+  font-size: 24px;
+}
+
+.details-input {
+  margin-bottom: 30px;
+}
+.form-grp{
+  margin: 50px 50px 0 50px ;
+}
+.details-input label {
+  display: block;
+  font-size: 14px;
+  color: white;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.details-input input,
+.details-input textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.details-input input:focus,
+.details-input textarea:focus {
+  outline: none;
+  border-color: #4CAF50; /* Green accent when focused */
+}
+
+.details-input textarea {
+  height: 100px;
+  resize: none;
+}
+.details-input .check {
+  width: 3%;
+}
+.input-fld:disabled {
+  background-color: #e3e3e3; /* Light grey background */
+  color: #999; /* Grey text color */
+  border: 1px solid #ccc; /* Light grey border */
+  cursor: not-allowed; /* Show a not-allowed cursor */
+}
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50; /* Primary CTA color */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #45a049; /* Slightly darker shade on hover */
+}
+
+.success-message,
+.error-message {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.success-message {
+  color: #4CAF50;
+  background-color: #e6f5e6;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: #fbeaea;
+}
+
+input[type="file"] {
+  padding: 10px 0;
+}
+@media (max-width: 756px) {
+  .user-details-container{
+    width: 80%;
+  }
+  .form-grp{
+    margin: 50px 20px 0 20px ;
+  }
+}
+/* @media (max-width: 600px) {
+  .user-details-container {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+} */

@@ -1,0 +1,86 @@
+/* blogpost.css */
+
+.upper {
+  height: 100vh;
+  overflow: auto; /* Allow scrolling if content exceeds the viewport height */
+}
+
+.mainV {
+  width: 60%;
+  margin: 5% auto; /* Center horizontally and add top margin */
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  padding: 50px;
+  background-color: #2d3748; /* Background color for dark mode */
+  font-size: 22px; /* Base font size */
+  border-radius: 10px;
+  margin-bottom: 200px; /* Space below the main content */
+  color: wheat; /* Text color */
+}
+
+.mainV.light-mode {
+  background-color: #2f4f4f; /* Darker background for light mode */
+  color: #b8c6c7; /* Lighter text color for readability */
+}
+
+h1 {
+  text-align: center; /* Center the title */
+}
+
+.blogImg {
+  width: 90%; /* Width of the image */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensure the image fits within its container */
+}
+
+.imgClass {
+  text-align: center; /* Center the image */
+}
+
+span {
+  font-size: 18px; /* Font size for spans */
+  color: gray; /* Gray color for spans */
+}
+
+.blogBtns {
+  display: flex; /* Flexbox for button alignment */
+  justify-content: center; /* Center the buttons */
+  margin: 10px; /* Margin around the button container */
+}
+
+.backBtn, .deleteBtn, .editBtn {
+  margin: 5px; /* Margin around each button */
+  padding: 10px; /* Padding inside buttons */
+  width: 80px; /* Fixed width for buttons */
+  border: none; /* Remove default border */
+  border-radius: 10px; /* Rounded corners for buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.backBtn {
+  background-color: rgb(106, 209, 140); /* Green background for back button */
+  color: white; /* White text color */
+}
+
+.editBtn {
+  background-color: bisque; /* Background for edit button */
+  color: black; /* Black text color */
+}
+
+.timeClass {
+  margin-top: 100px; /* Space above the time display */
+}
+
+@media (max-width: 420px) {
+  .mainV {
+    width: 70%; /* Increase width on small screens */
+  }
+
+  .mainV.light-mode {
+    width: 70%; /* Increase width for light mode on small screens */
+  }
+
+  .mainV h1 {
+    font-size: 26px; /* Increase font size for title on small screens */
+    text-align: left; /* Align title to the left */
+  }
+}
