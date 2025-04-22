@@ -1,6 +1,5 @@
 import Admin from "../models/Admin.js";
 import Appointment from "../models/appointment.js";
-// import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
@@ -8,8 +7,18 @@ import jwt from "jsonwebtoken";
 import Twilio from "twilio";
 import User from "../models/User.js";
 import Doctor from "../models/Doctor.js";
-const twilioClient = new Twilio('AC1e2bba4c3267193c964ac28ee8634aad', '5c9878aeac5dd872b731ad7c7ce21063');
+
 dotenv.config();
+
+// Initialize Twilio client using environment variables
+const twilioClient = new Twilio(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
+
+// Email credentials from environment variables
+const emailUser = process.env.EMAIL_USER;
+const emailPass = process.env.EMAIL_PASS;
 
 export const adminSignup = async (req, res) => {
   const { name, email, phone, authCode, specialization } = req.body;
@@ -29,10 +38,9 @@ export const adminLogin = async (req, res) => {
     const admin = await Admin.findOne({ email });
     if (!admin) return res.status(404).json({ message: "Admin not found" });
     if (authCode === admin.authCode[0]) {
-      const token = jwt.sign({ email }, "secret", { expiresIn: "3d" });
+      const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "3d" });
       return res.status(200).json({ token, message: "Admin Login success" });
     }
-    console.log(token);
     res.status(200).json({ message: "Login successful" });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -65,47 +73,6 @@ export const updateAdmin = async (req, res) => {
   }
 };
 
-export const getAdmins = async (req, res) => {
-  try {
-    const admins = await Admin.find({}).populate("adminDetails").populate("appointments");
-    if (!admins) return res.status(404).json({ message: "Admins not found" });
-    res.status(200).json(admins);
-  } catch (error) {
-    return res.status(500).json({ message: "Internal server error", error });
-  }
-};
-
-export const getAdmin = async (req, res) => {
-  const { adminId } = req.params;
-  try {
-    const admin = await Admin.findOne({ _id: adminId })
-      .populate({
-        path: "appointments",
-        populate: [
-          {
-            path: "createdBy",
-            populate: {
-              path: "userDetails",
-              // model: 'UserDetails'
-            },
-          },
-          {
-            path: "doctor",
-          },
-        ],
-      });
-    if (!admin) return res.status(404).json({ message: "No admin found" });
-    res.status(200).json(admin);
-  } catch (error) {
-    return res.status(500).json({ message: "Internal server error", error });
-  }
-};
-
-/*
-  Updated scheduleAppointment:
-  - If appointment.isPaidConsultation is true, status remains 'pending' and a payment link is sent.
-  - Otherwise, a room is created via Twilio, and appointment status is set to 'scheduled' as before.
-*/
 export const scheduleAppointment = async (req, res) => {
   try {
     const { appointmentId } = req.params;
@@ -117,7 +84,6 @@ export const scheduleAppointment = async (req, res) => {
     if (!appointment) return res.status(404).json({ message: "No appointment found" });
 
     // Check if this is a paid consultation.
-    // (Assuming you have a field "isPaidConsultation" in the Appointment model.)
     const isPaidConsultation = appointment.isPaidConsultation;
 
     if (isPaidConsultation) {
@@ -125,8 +91,6 @@ export const scheduleAppointment = async (req, res) => {
       appointment.status = "pending";
       await appointment.save();
 
-      // Payment link page is already implemented.
-      // This link includes the appointment id, e.g., http://localhost:5173/payment/{appointmentId}
       const paymentLink = `http://localhost:5173/payment/${appointmentId}`;
 
       // Send Payment Link to the patient via email.
@@ -135,13 +99,13 @@ export const scheduleAppointment = async (req, res) => {
         port: 587,
         secure: false,
         auth: {
-          user: "carepulse35@gmail.com",
-          pass: "lgjeofyafnemhmkv",
+          user: emailUser,
+          pass: emailPass,
         },
       });
 
       const patientMailOptions = {
-        from: "carepulse35@gmail.com",
+        from: emailUser,
         to: appointment.createdBy.email,
         subject: "Payment Link for Your Video Consultation",
         text: `Dear ${appointment.createdBy.name},\n\nYour appointment with Dr. ${appointment.doctor.name} requires payment to confirm the booking.\n\nPlease complete your payment using the following link:\n\n${paymentLink}\n\nOnce payment is successful, your appointment will be confirmed.\n\nBest Regards,\nCarePulse Team`,
@@ -158,7 +122,6 @@ export const scheduleAppointment = async (req, res) => {
       return res.status(200).json({ message: "Payment link sent to user", paymentLink });
     } else {
       // For free consultations, proceed as before:
-      // Generate a unique room ID
       const roomId = `room-${appointmentId}-${Date.now()}`;
 
       // Create a new room in Twilio
@@ -169,7 +132,6 @@ export const scheduleAppointment = async (req, res) => {
       appointment.roomId = roomId;
       await appointment.save();
 
-      // Update user's and doctor's room details
       const user = await User.findById(appointment.createdBy._id);
       user.roomIds.push(roomId);
       const doctor = await Doctor.findById(appointment.doctor._id);
@@ -178,26 +140,25 @@ export const scheduleAppointment = async (req, res) => {
       await user.save();
       await doctor.save();
 
-      // Notify both doctor and patient via email
       const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
         secure: false,
         auth: {
-          user: "carepulse35@gmail.com",
-          pass: "lgjeofyafnemhmkv",
+          user: emailUser,
+          pass: emailPass,
         },
       });
 
       const doctorMailOptions = {
-        from: "carepulse35@gmail.com",
+        from: emailUser,
         to: appointment.doctor.email,
         subject: "New Appointment Scheduled",
         text: `Dear Dr. ${appointment.doctor.name},\n\nYou have a new appointment scheduled.\n\nDetails:\n- Patient: ${appointment.createdBy.name}\n- Date & Time: ${new Date(appointment.appointmentDate).toLocaleString()}\n- Reason: ${appointment.reason}\n- Room ID: ${roomId}\n\nPlease prepare for the appointment.\n\nBest Regards,\nCarePulse Team`,
       };
 
       const patientMailOptions = {
-        from: "carepulse35@gmail.com",
+        from: emailUser,
         to: appointment.createdBy.email,
         subject: "New Appointment Scheduled",
         text: `Dear ${appointment.createdBy.name},\n\nYour appointment with Dr. ${appointment.doctor.name} has been scheduled.\n\nDetails:\n- Date & Time: ${new Date(appointment.appointmentDate).toLocaleString()}\n- Reason: ${appointment.reason}\n- Room ID: ${roomId}\n\nPlease be available at the scheduled time.\n\nBest Regards,\nCarePulse Team`,
@@ -210,7 +171,7 @@ export const scheduleAppointment = async (req, res) => {
           console.log("Doctor Email sent:", info.response);
         }
       });
-      
+
       transporter.sendMail(patientMailOptions, (error, info) => {
         if (error) {
           console.error("Error sending patient email:", error);

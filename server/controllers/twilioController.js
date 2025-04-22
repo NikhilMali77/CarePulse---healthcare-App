@@ -1,27 +1,33 @@
 import Twilio from "twilio";
-// Initialize Twilio client
-const twilioClient = new Twilio('AC1e2bba4c3267193c964ac28ee8634aad', '5c9878aeac5dd872b731ad7c7ce21063');
+import dotenv from "dotenv";
+
+dotenv.config();
+
+// Initialize Twilio client using environment variables
+const twilioClient = new Twilio(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
 
 export const generateToken = (req, res) => {
   const { roomId, userId } = req.body;
 
-  // Create an access token
+  if (!roomId || !userId) {
+    return res.status(400).json({ message: "Missing roomId or userId" });
+  }
+
   const AccessToken = Twilio.jwt.AccessToken;
   const VideoGrant = AccessToken.VideoGrant;
 
   // Create a new token instance
   const token = new AccessToken(
-    'AC1e2bba4c3267193c964ac28ee8634aad',
-    'SKdb3f5d573be75986f58f3510f21ce84d',
-    'u5TgT74Cr7rP6CYthfKMyd5mbINZmuKK',
-    {
-      identity: userId,
-    }
+    process.env.TWILIO_ACCOUNT_SID,
+    process.env.TWILIO_API_KEY_SID,
+    process.env.TWILIO_API_KEY_SECRET,
+    { identity: userId }
   );
 
-  const videoGrant = new VideoGrant({
-    room: roomId,
-  });
+  const videoGrant = new VideoGrant({ room: roomId });
   token.addGrant(videoGrant);
 
   res.send({

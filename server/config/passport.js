@@ -8,9 +8,9 @@ dotenv.config();
 
 // Google OAuth strategy
 passport.use('google', new GoogleStrategy({
-  clientID: '981991086747-n8bnedvs5si8dv0vcs8hk2qc4ngs5t9p.apps.googleusercontent.com',
-  clientSecret: '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',
-  callbackURL: 'http://localhost:5000/auth/google/callback',
+  clientID: process.env.GOOGLE_CLIENT_ID, // Securely stored in .env file
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET, // Securely stored in .env file
+  callbackURL: process.env.GOOGLE_CALLBACK_URL || 'http://localhost:5000/auth/google/callback',
   passReqToCallback: true
 }, async (req, accessToken, refreshToken, profile, done) => {
   const name = profile.displayName;
@@ -27,7 +27,7 @@ passport.use('google', new GoogleStrategy({
     if (role === 'admin') {
       let admin = await Admin.findOne({ email });
       if (!admin) {
-        const authCode = ''; // Example auth code
+        const authCode = ''; // Example auth code (ensure this is generated securely)
 
         admin = new Admin({
           googleId,

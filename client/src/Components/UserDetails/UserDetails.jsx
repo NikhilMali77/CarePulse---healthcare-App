@@ -32,10 +32,10 @@ const UserDetails = ({user}) => {
     if (idProof) {
       const formData = new FormData();
       formData.append('file', idProof);
-      formData.append('upload_preset', 'ml_default' );
+      formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_PRESET );
 
       try {
-        const uploadResponse = await fetch('https://api.cloudinary.com/v1_1/dmx577ow7/image/upload', {
+        const uploadResponse = await fetch(process.env.REACT_APP_CLOUDINARY_UPLOAD, {
           method: 'POST',
           body: formData,
         });
